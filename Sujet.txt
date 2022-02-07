@@ -1,0 +1,11 @@
+1- Reformulation du sujet => reformulation.pdf
+2- MAquettage applicatiuf =>maquette.pdf
+3-Conception   du SI  ( mcd , mld , mpd) => conception.pdf
+4- Choix des outils  et techno => outilsettechno.pdf
+5- Repartition  des taches  => ( depot GitHub)
+trello.com
+draw.io
+
+6- Codage
+constmatsima@gmail.com
+0618128578
