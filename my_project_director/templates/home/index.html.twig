@@ -1,11 +1,15 @@
-{% extends 'layouts/header.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}GetSchool | Accueil {% endblock %}
 
 {% block body %}
+<div class="text-center">
+    <h2 class="my-5">Bienvenue à GetSchool</h2>
 
-
-<div class="example-wrapper">
+    <img src="{{ asset("img/ecole.jpg") }}" class="mx-2 rounded" style="max-width : 50vw;box-shadow: 5px 5px 5px #191919;" alt="Photo ecole">
+    <h4 class="my-5">Merci de vous connecter pour utiliser nos services</h4>
+    
+        <button class="btn btn-success w-50">Connexion</button>
     
 </div>
 {% endblock %}
