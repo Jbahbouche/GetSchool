@@ -4,12 +4,15 @@
 
 {% block body %}
 <div class="text-center">
-    <h2 class="my-5">Bienvenue à GetSchool</h2>
+    <h2 class="my-5">Bienvenue à GetSchool {% if app.user %} {{app.user.nom}} {% endif %}</h2>
 
-    <img src="{{ asset("img/ecole.jpg") }}" class="mx-2 rounded" style="max-width : 50vw;box-shadow: 5px 5px 5px #191919;" alt="Photo ecole">
+    <img src="{{ asset("img/ecole.jpg") }}" class="mx-2 my-5 rounded" style="max-width : 50vw;box-shadow: 5px 5px 5px #191919;" alt="Photo ecole">
+    
+    {% if not app.user %}
     <h4 class="my-5">Merci de vous connecter pour utiliser nos services</h4>
     
-        <button class="btn btn-success w-50">Connexion</button>
-    
+        <button class="btn btn-success w-50 mb-5">Connexion</button>
+    {% endif %}
 </div>
+
 {% endblock %}

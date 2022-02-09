@@ -18,7 +18,7 @@
     </head>
 <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-2 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">GetSchool</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">GetSchool</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,8 +26,9 @@
   <div class="navbar-nav">
     <div class="nav-item text-nowrap d-flex">
     
-      <a class="nav-link px-3" href="#">Messages</a>
+      <a class="nav-link px-3" href="{{ path('home') }}">Messages</a>
       <a class="nav-link px-3" href="#">Profil</a>
+      <a class="nav-link px-3" href="#">Connexion</a>
       <a class="nav-link px-3" href="#">Déconnexion</a>
     </div>
   </div>
@@ -42,19 +43,19 @@
           <span>Etudiant</span>
         </h6>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" aria-current="page" href="#">
+            <a class="nav-link text-white" aria-current="page" href="{{ path('home') }}">
               
               Consultation des Notes
             </a>
           </li>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('admin') }}">
               
               Emploi du temps
             </a>
           </li>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="">
               
               Contacter le professeur
             </a>
@@ -153,9 +154,7 @@
     <div class="container-fluid bg-dark">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
     <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="me-2 mb-md-0 text-muted text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      </a>
+      
       <span class=" text-white">&copy; 2022 GetSchool</span>
     </div>
 

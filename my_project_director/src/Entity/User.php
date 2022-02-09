@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Note;
+use App\Entity\Classe;
+use App\Entity\Message;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -44,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'envoi_id', targetEntity: Message::class)]
     private $messages;
 
-    #[ORM\ManyToOne(targetEntity: classe::class, inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'users')]
     private $classe_id;
 
     public function __construct()
@@ -86,8 +89,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+       /*  // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER'; */
 
         return array_unique($roles);
     }

@@ -18,7 +18,7 @@ class Classe
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
-    #[ORM\ManyToOne(targetEntity: cycle::class, inversedBy: 'classes')]
+    #[ORM\ManyToOne(targetEntity: Cycle::class, inversedBy: 'classes')]
     #[ORM\JoinColumn(nullable: false)]
     private $cycle_id;
 

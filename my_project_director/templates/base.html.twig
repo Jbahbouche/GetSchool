@@ -18,17 +18,24 @@
     </head>
 <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-2 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">GetSchool</a>
-  <button class="navbar-toggler {# position-absolute #} d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">GetSchool</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   
   <div class="navbar-nav">
     <div class="nav-item text-nowrap d-flex">
     
+      
+      
+      {% if app.user %}       
       <a class="nav-link px-3" href="#">Messages</a>
       <a class="nav-link px-3" href="#">Profil</a>
-      <a class="nav-link px-3" href="#">Déconnexion</a>
+       <a class="nav-link px-3" href="{{ path('app_logout') }}">Déconnexion</a>
+      {% else %}
+      <a class="nav-link px-3" href="{{ path('app_login') }}">Connexion</a>
+      <a class="nav-link px-3" href="{{ path('register') }}">Inscription</a>
+      {% endif %}
     </div>
   </div>
 </header>
@@ -37,39 +44,36 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse text-white">
       <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Etudiant</span>
-        </h6>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" aria-current="page" href="#">
+      <ul class="nav flex-column">
+      {% if app.user %}
+      
+        {% if app.user.roles ==["ROLE_ETU"] %}
+        
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Etudiant {{ app.user.nom ~' '~ app.user.prenom }}</span>
+              </h6>
+              <li class="nav-item ms-4">
+                  <a class="nav-link text-white" aria-current="page" href="{{ path('home') }}">
               
-              Consultation des Notes
-            </a>
-          </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
-              
-              Emploi du temps
-            </a>
-          </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
-              
-              Contacter le professeur
-            </a>
-          </li>
+                   Consultation des Notes
+                  </a>
+              </li>
+        {% endif %}
+        {% if app.user.roles ==["ROLE_PARENT"] %}  
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Parent</span>
-        </h6>
+          <span>Parent {{ app.user.nom ~' '~ app.user.prenom }}</span>
+          </h6>
           <li class="nav-item ms-4">
             <a class="nav-link text-white" href="#">
              
               Contacter l'administration
             </a>
           </li>
+
+        {% endif %}
+        {% if app.user.roles ==["ROLE_PROF"] %} 
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Professeur</span>
+          <span>Professeur {{ app.user.nom ~' '~ app.user.prenom }}</span>
         </h6>
           <li class="nav-item ms-4">
             <a class="nav-link text-white" href="#">
@@ -89,8 +93,11 @@
               Contacter un parent
             </a>
           </li>
+
+          {% endif %}
+          {% if app.user.roles ==["ROLE_GEST"] %}
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Gestionnaire</span>
+          <span>Gestionnaire {{ app.user.nom ~' '~ app.user.prenom }}</span>
         </h6>
           <li class="nav-item ms-4">
             <a class="nav-link text-white" href="#">
@@ -128,8 +135,16 @@
               Assigner les élèves et le professeur
             </a>
           </li>
+          <li class="nav-item ms-4">
+            <a class="nav-link text-white" href="{{ path('admin') }}">
+              
+              Accès à la gestion
+            </a>
+          </li>
+          {% endif %}
+          {% if app.user.roles ==["ROLE_ADMIN"] %}
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Administrateur</span>
+            <span>Administrateur {{ app.user.nom ~' '~ app.user.prenom }}</span>
           </h6>
           <li class="nav-item ms-4">
             <a class="nav-link text-white" href="#">
@@ -143,27 +158,23 @@
               Gestion des utilisateurs
             </a>
           </li>
+          {% endif %}
+          {% endif %}
+          </ul>
       </div>
     </nav>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         {% block body %}{% endblock %}
-    </main>
+        </main>
     </div>
     </div>
     <div class="container-fluid bg-dark">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
     <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="me-2 mb-md-0 text-muted text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      </a>
+      
       <span class=" text-white">&copy; 2022 GetSchool</span>
     </div>
 
-    {# <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-    </ul> #}
   </footer>
 </div>
 </body>

@@ -16,11 +16,11 @@ class Note
     #[ORM\Column(type: 'float')]
     private $score;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'notes')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notes')]
     #[ORM\JoinColumn(nullable: false)]
     private $prof_id;
 
-    #[ORM\ManyToOne(targetEntity: user::class)]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     private $etudiant_id;
 
     #[ORM\Column(type: 'string', length: 255)]
