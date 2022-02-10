@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\User1Type;
 use App\Repository\UserRepository;
+use App\Repository\ClasseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,8 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            /* 'users' => $userRepository->findAll(), */
+            'users' => $userRepository->findBy([], ['roles'=> 'ASC'])
         ]);
     }
 
@@ -57,14 +59,16 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, ClasseRepository $classe): Response
     {
         
         if ($_GET) {
-            if (isset($_GET['role'])){
+            
+            if (isset($_GET['role']) && isset($_GET['classe'])){
                 $role=[];
                 $role=[$_GET['role']];
                 $user->setRoles($role);
+                $user->setClasseId($classe->find($_GET['classe']));
                 $entityManager->persist($user);
                 $entityManager->flush();
                 return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
@@ -99,6 +103,7 @@ class UserController extends AbstractController
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
+            'classes' => $classe->findAll(),
         ]);
     }
 
@@ -114,12 +119,12 @@ class UserController extends AbstractController
     }
 
 
-    /* #[Route('/', name: 'user_index', methods: ['GET'])] 
-    public function index(UserRepository $userRepository): Response
+    /* #[Route('/affectation', name: 'user_affectation', methods: ['GET'])]
+    public function affectation(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
- */
+        
+
+        return $this->renderForm('user/affectation.html.twig', );
+    } */
+
 }
