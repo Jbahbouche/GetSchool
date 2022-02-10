@@ -76,7 +76,7 @@
           <span>Professeur {{ app.user.nom ~' '~ app.user.prenom }}</span>
         </h6>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('note_index') }}">
              
               Saisir les notes
             </a>
@@ -164,6 +164,9 @@
       </div>
     </nav>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        {% for notification in app.flashes('success') %}
+        <div class="alert alert-success col-md-6 mx-auto text-center"> {{ notification }} </div>
+        {% endfor %}
         {% block body %}{% endblock %}
         </main>
     </div>

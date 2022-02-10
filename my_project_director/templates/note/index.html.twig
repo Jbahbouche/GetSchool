@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note index{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+    <h1>Note index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Score</th>
+                <th>Matiere</th>
+                <th>Commentaire</th>
+                <th>Etudiant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for note in notes %}
+            <tr>
+                
+                <td>{{ note.score }}</td>
+                <td>{{ note.matiere }}</td>
+                <td>{{ note.commentaire }}</td>
+                <td>{{ note.etudiantId }}</td>
+                <td>
+                    <a href="{{ path('note_show', {'id': note.id}) }}"class="btn btn-warning me-2">Voir le détail</a>
+                    <a href="{{ path('note_edit', {'id': note.id}) }}"class="btn btn-warning me-2">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune note saisie</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('note_new') }}" class="btn btn-warning me-2">Ajouter une note</a>
+    </div>
+{% endblock %}

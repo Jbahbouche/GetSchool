@@ -20,11 +20,11 @@ class ClasseType extends AbstractType
             'attr'=>[
                 'placeholder'=>'Veuillez saisir le cycle','class'=> 'w-50 form-control my-1'],
                 ])
-            ->add('cycle_id', EntityType::class,[
+        ->add('cycle_id', EntityType::class,[
                 "class"=> Cycle::class,
                 'attr'=>[
                     'class'=> 'w-50 form-control my-1'],
-            ])
+        ])
         ;
     }
 
