@@ -100,21 +100,21 @@
           <span>Gestionnaire {{ app.user.nom ~' '~ app.user.prenom }}</span>
         </h6>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('cycle_index') }}">
               
-              Ajouter un cycle
+              Gestion des Cycles
             </a>
           </li>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('classe_index') }}">
               
-              Ajouter une classe
+              Gestion des Classes
             </a>
           </li>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('user_index') }}">
               
-              Assigner les élèves et le professeur
+              Gestion des effectifs
             </a>
           </li>
           <li class="nav-item ms-4">
@@ -147,13 +147,13 @@
             <span>Administrateur {{ app.user.nom ~' '~ app.user.prenom }}</span>
           </h6>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('user_new') }}">
               
               Creer un Gestionnaire
             </a>
           </li>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('user_index') }}">
               
               Gestion des utilisateurs
             </a>

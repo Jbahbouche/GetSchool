@@ -3,6 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Cycle;
+use App\Controller\Admin\CycleCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class CycleCrudController extends AbstractCrudController
@@ -12,14 +15,14 @@ class CycleCrudController extends AbstractCrudController
         return Cycle::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')->hideOnForm(),
+            TextField::new('nom'),
+            
         ];
     }
-    */
+   
 }

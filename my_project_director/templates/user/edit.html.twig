@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+        <h1 class=" text-center">Modifier l'utilisateur</h1>
+
+    <form class= "col-6 container" method="get" action="">
+        
+        <h5>{{ user.nom }}</h5>
+        {% if app.user.roles == ["ROLE_GEST"] %}
+        <h6  class="mt-2">Role :</h6>
+        <div class="form-check form-check-inline" id="role">
+            <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="ROLE_PROF">
+            <label class="form-check-label" for="inlineRadio1">Professeur</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="ROLE_PARENT">
+            <label class="form-check-label" for="inlineRadio2">Parent</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="ROLE_ETU" >
+            <label class="form-check-label" for="inlineRadio3">Etudiant</label>
+        </div>
+        {% endif %}
+       {% if app.user.roles == ["ROLE_ADMIN"] %}
+        <h6  class="mt-2">Actif :</h6>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="actif" id="inlineRadio4" value="true">
+            <label class="form-check-label" for="inlineRadio4">Oui</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="actif" id="inlineRadio5" value="false" >
+            <label class="form-check-label" for="inlineRadio5">Non</label>
+        </div>
+       {% endif %}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+
+    <a href="{{ path('user_index') }}" class="btn btn-warning">Retour à la liste</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

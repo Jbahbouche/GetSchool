@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cycle{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+    <h1 class="mb-3">Ajouter un nouveau Cycle</h1>
+
+    {{ include('cycle/_form.html.twig') }}
+
+    <a href="{{ path('cycle_index') }}" class="btn btn-warning">Retour à la liste</a>
+    </div>
+{% endblock %}
