@@ -23,6 +23,24 @@
         </tbody>
     </table>
 
+    <h3>Liste des individus de la classe</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>Prénom</td>
+                <td>Role</td>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <th> {{user.nom}} </th>
+                <td>{{user.prenom}}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <a href="{{ path('classe_index') }}" class="btn btn-warning me-2">Retour à la liste</a>
 
     <a href="{{ path('classe_edit', {'id': classe.id}) }}" class="btn btn-warning">Modifier</a>
