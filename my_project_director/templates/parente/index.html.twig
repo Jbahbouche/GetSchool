@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parente index{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+    <h1>Parente index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Etudiant</th>
+                <th>Parent</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parente in parentes %}
+            <tr>
+                <td>{{ parente.id }}</td>
+                <td>{{ parente.enfant }}</td>
+                <td>{{ parente.parent }}</td>
+                <td>
+                    <a href="{{ path('parente_show', {'id': parente.id}) }}" class="btn btn-warning me-2">Voir le détail</a>
+                    <a href="{{ path('parente_edit', {'id': parente.id}) }}" class="btn btn-warning me-2">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('parente_new') }}" class="btn btn-warning me-2">Ajouter un nouveau lien</a>
+    </div>
+{% endblock %}

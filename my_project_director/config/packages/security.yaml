@@ -40,7 +40,11 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_GEST] }
-         - { path: ^/note/new, roles: [ROLE_PROF] }
+         - { path: ^/consultation, roles: [ROLE_ETU, ROLE_PARENT] }
+         - { path: ^/note, roles: [ROLE_PROF] }
+         - { path: ^/cycle, roles: [ROLE_GEST] }
+         - { path: ^/classe, roles: [ROLE_GEST] }
+         - { path: ^/parente, roles: [ROLE_GEST] }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

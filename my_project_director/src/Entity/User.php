@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'users')]
     private $classe_id;
 
+    #[ORM\OneToOne(mappedBy: 'enfant', targetEntity: Parente::class, cascade: ['persist', 'remove'])]
+    private $parente;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -249,5 +252,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(){
         $nomPrenom = $this->nom . ' ' . $this->prenom;
         return $nomPrenom;
+    }
+
+    public function getParente(): ?Parente
+    {
+        return $this->parente;
+    }
+
+    public function setParente(?Parente $parente): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($parente === null && $this->parente !== null) {
+            $this->parente->setEnfant(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($parente !== null && $parente->getEnfant() !== $this) {
+            $parente->setEnfant($this);
+        }
+
+        $this->parente = $parente;
+
+        return $this;
     }
 }

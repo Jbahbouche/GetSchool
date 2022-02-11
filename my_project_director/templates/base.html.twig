@@ -53,7 +53,7 @@
                 <span>Etudiant {{ app.user.nom ~' '~ app.user.prenom }}</span>
               </h6>
               <li class="nav-item ms-4">
-                  <a class="nav-link text-white" aria-current="page" href="{{ path('home') }}">
+                  <a class="nav-link text-white" aria-current="page" href="{{ path('consultation') }}">
               
                    Consultation des Notes
                   </a>
@@ -64,9 +64,9 @@
           <span>Parent {{ app.user.nom ~' '~ app.user.prenom }}</span>
           </h6>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('consultation') }}">
              
-              Contacter l'administration
+              Consultation des Notes
             </a>
           </li>
 
@@ -81,18 +81,8 @@
               Saisir les notes
             </a>
           </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
-             
-              Contacter un étudiant
-            </a>
-          </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
-              
-              Contacter un parent
-            </a>
-          </li>
+
+          
 
           {% endif %}
           {% if app.user.roles ==["ROLE_GEST"] %}
@@ -118,29 +108,12 @@
             </a>
           </li>
           <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="{{ path('parente_index') }}">
               
-              Affectation des effectifs
+              Gestion des Parents/Enfants
             </a>
           </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
-              
-              Ajouter un élève
-            </a>
-          </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="#">
-              
-              Assigner les élèves et le professeur
-            </a>
-          </li>
-          <li class="nav-item ms-4">
-            <a class="nav-link text-white" href="{{ path('admin') }}">
-              
-              Accès à la gestion
-            </a>
-          </li>
+
           {% endif %}
           {% if app.user.roles ==["ROLE_ADMIN"] %}
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
