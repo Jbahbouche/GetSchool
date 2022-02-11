@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parente{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+    <h1>Lien de parenté</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Parent</th>
+                <td>{{ parente.parent }}</td>
+            </tr>
+            <tr>
+                <th>Etudiant</th>
+                <td>{{ parente.enfant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('parente_index') }}"class="btn btn-warning me-2">Retour à la liste</a>
+
+    <a href="{{ path('parente_edit', {'id': parente.id}) }}" class="btn btn-warning me-2">Modifier</a>
+
+    {{ include('parente/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

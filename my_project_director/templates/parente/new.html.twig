@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Parente{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+    <h1>Ajouté un nouveau lien de parenté</h1>
+
+    {{ include('parente/_form.html.twig') }}
+
+    <a href="{{ path('parente_index') }}" class="btn btn-warning me-2">Retour à la liste</a>
+    </div>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Classe;
 use App\Form\ClasseType;
+use App\Repository\UserRepository;
 use App\Repository\CycleRepository;
 use App\Repository\ClasseRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,12 +46,15 @@ class ClasseController extends AbstractController
     }
 
     #[Route('/{id}', name: 'classe_show', methods: ['GET'])]
-    public function show(Classe $classe, CycleRepository $cycleRepository): Response
+    public function show(Classe $classe, CycleRepository $cycleRepository, UserRepository $usersRepository): Response
     {
+        $users = $usersRepository->findBy(['classe_id' => $classe->getId()],['roles'=> 'DESC']);
+        
         $cycle = $cycleRepository->find($classe->getCycleId())->getNom();
         return $this->render('classe/show.html.twig', [
             'classe' => $classe,
-            'cycle' => $cycle
+            'cycle' => $cycle,
+            'users' => $users
         ]);
     }
 

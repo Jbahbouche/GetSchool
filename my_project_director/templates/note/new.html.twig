@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Note{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+    <h1>Ajouter une note</h1>
+<form class= "col-6 container" method="get" action="">
+        <div class="mb-3">
+            <label for="note" class="form-label">Note</label>
+            <input type="number" class="form-control" id="note" aria-describedby="emailHelp" name="score">
+        </div>
+        <div class="mb-3">
+            <label for="matiere" class="form-label">Matière</label>
+            <input type="text" class="form-control" id="matiere" aria-describedby="emailHelp" name="matiere">
+        </div>
+        <div class="mb-3">
+            <label for="commentaires" class="form-label">Commentaires</label>
+            <input type="text" class="form-control" id="commentaires" aria-describedby="emailHelp" name="commentaire">
+        </div>
+
+       {% for user in users %}
+        {% if user.roles == ["ROLE_ETU"] %}
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="etudiant" id="inlineRadio4" value={{ user.id }}>
+            <label class="form-check-label" for="inlineRadio4">{{ user.nom ~' '~ user.prenom }} </label>
+        </div>
+        {% endif %}
+       {% endfor %}
+       <br>
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+</form>
+</div>
+{% endblock %}
