@@ -13,11 +13,11 @@ class Message
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'messages')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
     private $envoi_id;
 
-    #[ORM\ManyToOne(targetEntity: user::class)]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $reception_id;
 
@@ -27,29 +27,32 @@ class Message
     #[ORM\Column(type: 'datetime_immutable')]
     private $created_at;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $title;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEnvoiId(): ?user
+    public function getEnvoiId(): ?User
     {
         return $this->envoi_id;
     }
 
-    public function setEnvoiId(?user $envoi_id): self
+    public function setEnvoiId(?User $envoi_id): self
     {
         $this->envoi_id = $envoi_id;
 
         return $this;
     }
 
-    public function getReceptionId(): ?user
+    public function getReceptionId(): ?User
     {
         return $this->reception_id;
     }
 
-    public function setReceptionId(?user $reception_id): self
+    public function setReceptionId(?User $reception_id): self
     {
         $this->reception_id = $reception_id;
 
@@ -76,6 +79,18 @@ class Message
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }   
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

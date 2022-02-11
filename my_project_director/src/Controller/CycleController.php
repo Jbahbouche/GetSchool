@@ -28,7 +28,7 @@ class CycleController extends AbstractController
         $cycle = new Cycle();
         $form = $this->createForm(Cycle1Type::class, $cycle);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($cycle);
             $entityManager->flush();

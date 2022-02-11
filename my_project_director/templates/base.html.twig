@@ -29,7 +29,7 @@
       
       
       {% if app.user %}       
-      <a class="nav-link px-3" href="#">Messages</a>
+      <a class="nav-link px-3" href="{{ path('message') }}">Messages</a>
       <a class="nav-link px-3" href="#">Profil</a>
        <a class="nav-link px-3" href="{{ path('app_logout') }}">Déconnexion</a>
       {% else %}
